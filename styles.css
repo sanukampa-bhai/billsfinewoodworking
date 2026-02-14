@@ -1,10 +1,14 @@
 /* Custom Styles for Bill's Fine Woodworking */
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;600;700&display=swap');
+
 :root {
     --primary-color: #2c3e50;
     --accent-color: #8b4513;
+    --accent-hover: #a0522d;
     --light-bg: #f8f9fa;
     --text-dark: #2c3e50;
+    --warm-white: #fdf8f0;
 }
 
 * {
@@ -14,14 +18,18 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Lato', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-dark);
     line-height: 1.6;
 }
 
+h1, h2, h3, h4, h5 {
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&h=900&fit=crop&q=80') center center / cover no-repeat;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -29,52 +37,126 @@ body {
     overflow: hidden;
 }
 
-.hero-section::before {
-    content: '';
+.hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="1200" height="600" fill="none"/><rect width="1200" height="600" fill="url(%23grid)" /></svg>');
-    opacity: 0.1;
+    background: rgba(0, 0, 0, 0.55);
 }
 
 .hero-section h1 {
-    font-size: 3.5rem;
+    font-size: 4rem;
     font-weight: 700;
     letter-spacing: -1px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
 }
 
 .hero-section .lead {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 300;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Accent Button */
+.btn-accent {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.btn-accent:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.4);
 }
 
 /* Navbar */
 .navbar {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 0.8rem 0;
 }
 
 .navbar-brand {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     letter-spacing: 0.5px;
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+.nav-link {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent-color) !important;
 }
 
 /* Cards */
 .card {
     border: none;
+    border-radius: 12px;
+    overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15) !important;
+}
+
+.card-img-wrapper {
+    overflow: hidden;
+    height: 260px;
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .card-img-wrapper img {
+    transform: scale(1.05);
+}
+
+.card-body {
+    padding: 1.5rem;
 }
 
 .card-title {
     color: var(--primary-color);
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.card-text {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Service Cards */
+.service-card {
+    background: #fff;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 /* Service Icons */
@@ -85,7 +167,13 @@ body {
 }
 
 .service-icon:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
+}
+
+/* Contact Info Icons */
+.contact-info-icon {
+    font-size: 1.8rem;
+    color: var(--accent-color);
 }
 
 /* Sections */
@@ -97,6 +185,7 @@ section h2 {
     color: var(--primary-color);
     position: relative;
     padding-bottom: 1.5rem;
+    font-size: 2.5rem;
 }
 
 section h2::after {
@@ -111,8 +200,35 @@ section h2::after {
     border-radius: 2px;
 }
 
+#about h2::after {
+    left: 0;
+    transform: none;
+}
+
 #services {
-    background: #fff;
+    background: var(--warm-white);
+}
+
+/* About Image */
+.about-img-wrapper {
+    position: relative;
+}
+
+.about-img-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+    width: 100%;
+    height: 100%;
+    border: 4px solid var(--accent-color);
+    border-radius: 0.375rem;
+    z-index: -1;
+}
+
+.about-img-wrapper img {
+    position: relative;
+    z-index: 1;
 }
 
 /* Button Styles */
@@ -120,6 +236,8 @@ section h2::after {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     transition: all 0.3s ease;
+    border-radius: 6px;
+    font-weight: 600;
 }
 
 .btn-dark:hover {
@@ -129,20 +247,22 @@ section h2::after {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.btn-light {
+.btn-outline-light {
     transition: all 0.3s ease;
+    border-width: 2px;
+    font-weight: 600;
 }
 
-.btn-light:hover {
+.btn-outline-light:hover {
     background-color: var(--accent-color);
-    color: white;
+    border-color: var(--accent-color);
     transform: translateY(-2px);
 }
 
 /* Form Styles */
 .form-control {
     border-color: #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
     padding: 0.75rem 1rem;
     transition: border-color 0.3s ease;
 }
@@ -158,11 +278,16 @@ section h2::after {
     margin-bottom: 0.5rem;
 }
 
-/* Placeholder Images */
-.placeholder-img {
-    background-color: #e9ecef;
-    border-radius: 8px;
-    overflow: hidden;
+/* Contact links */
+#contact a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#contact a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
 }
 
 /* Footer */
@@ -193,7 +318,7 @@ footer p {
 /* Responsive */
 @media (max-width: 768px) {
     .hero-section h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     .hero-section .lead {
@@ -206,6 +331,16 @@ footer p {
 
     section h2::after {
         width: 40px;
+    }
+
+    .about-img-wrapper::after {
+        display: none;
+    }
+
+    .btn-accent, .btn-outline-light {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5rem;
     }
 }
 

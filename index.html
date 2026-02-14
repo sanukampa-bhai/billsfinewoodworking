@@ -36,10 +36,17 @@
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
+    <!-- Preload LCP hero image -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1546531537-3884727f20d4?w=1920&q=80" fetchpriority="high">
+
+    <!-- Critical CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+
+    <!-- Defer non-critical Font Awesome CSS -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></noscript>
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
@@ -198,7 +205,7 @@
                         <div class="card-img-wrapper">
                             <img src="https://images.unsplash.com/photo-1656403002413-2ac6137237d6?w=600&h=400&fit=crop&q=80"
                                  alt="Custom walnut dining table handcrafted in San Diego by Bill's Fine Woodworking"
-                                 class="card-img-top" loading="lazy">
+                                 class="card-img-top" loading="lazy" width="600" height="400">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Custom Dining Table</h5>
@@ -211,7 +218,7 @@
                         <div class="card-img-wrapper">
                             <img src="https://images.unsplash.com/photo-1605787050388-845c63b60920?w=600&h=400&fit=crop&q=80"
                                  alt="Custom built-in cherry wood bookshelf by San Diego woodworker Bill Robell"
-                                 class="card-img-top" loading="lazy">
+                                 class="card-img-top" loading="lazy" width="600" height="400">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Built-In Bookshelf</h5>
@@ -224,7 +231,7 @@
                         <div class="card-img-wrapper">
                             <img src="https://images.unsplash.com/photo-1649068533606-0e7ef6786214?w=600&h=400&fit=crop&q=80"
                                  alt="Custom oak kitchen cabinetry with dovetail joinery San Diego CA"
-                                 class="card-img-top" loading="lazy">
+                                 class="card-img-top" loading="lazy" width="600" height="400">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Kitchen Cabinetry</h5>
@@ -375,7 +382,7 @@
                     <div class="about-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1722411927625-0e478acf502b?w=700&h=500&fit=crop&q=80"
                              alt="Bill Robell master woodworker and custom cabinetmaker in his San Diego workshop"
-                             class="img-fluid rounded shadow" loading="lazy">
+                             class="img-fluid rounded shadow" loading="lazy" width="700" height="500">
                     </div>
                 </div>
                 <div class="col-lg-6 ps-lg-5">
@@ -544,7 +551,7 @@
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

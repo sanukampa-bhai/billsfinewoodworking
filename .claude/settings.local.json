@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(where:*)",
+      "Bash(where npx:*)",
+      "Bash(powershell -Command:*)"
+    ]
+  }
+}

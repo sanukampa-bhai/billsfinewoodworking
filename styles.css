@@ -61,6 +61,21 @@ h1, h2, h3, h4, h5 {
     margin-right: auto;
 }
 
+/* Trust Bar */
+.trust-bar {
+    border-bottom: 3px solid var(--accent-color);
+}
+
+.trust-item {
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.trust-item strong {
+    color: var(--accent-color);
+    font-size: 1.1rem;
+}
+
 /* Accent Button */
 .btn-accent {
     background-color: var(--accent-color);
@@ -93,8 +108,8 @@ h1, h2, h3, h4, h5 {
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    font-size: 0.85rem;
-    padding: 0.5rem 1rem !important;
+    font-size: 0.8rem;
+    padding: 0.5rem 0.75rem !important;
     transition: color 0.3s ease;
 }
 
@@ -168,6 +183,107 @@ h1, h2, h3, h4, h5 {
 
 .service-icon:hover {
     transform: scale(1.15);
+}
+
+/* Process Steps */
+.process-step {
+    position: relative;
+}
+
+.process-number {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    color: #fff;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+}
+
+.process-step h5 {
+    color: var(--primary-color);
+}
+
+/* Testimonials */
+.testimonial-card {
+    background: #fff;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-color);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.testimonial-card .stars {
+    color: #f4a940;
+    font-size: 1rem;
+    letter-spacing: 2px;
+}
+
+.testimonial-card p {
+    color: #555;
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.testimonial-author strong {
+    color: var(--primary-color);
+    font-style: normal;
+}
+
+/* FAQ Accordion */
+.accordion-item {
+    border: 1px solid #e9ecef;
+    margin-bottom: 0.5rem;
+    border-radius: 8px !important;
+    overflow: hidden;
+}
+
+.accordion-button {
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.05rem;
+    padding: 1.1rem 1.25rem;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--warm-white);
+    color: var(--accent-color);
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.15);
+}
+
+.accordion-button::after {
+    filter: none;
+}
+
+.accordion-body {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.accordion-body a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.accordion-body a:hover {
+    text-decoration: underline;
 }
 
 /* Contact Info Icons */
@@ -300,6 +416,14 @@ footer p {
     margin: 0;
 }
 
+footer a {
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--accent-color) !important;
+}
+
 /* Hover Effects */
 .hover-shadow {
     transition: box-shadow 0.3s ease;
@@ -342,6 +466,11 @@ footer p {
         width: 100%;
         margin-bottom: 0.5rem;
     }
+
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 0.5rem 0 !important;
+    }
 }
 
 /* Smooth Scrolling */
@@ -365,7 +494,7 @@ html {
 
 /* Contact Section */
 #contact {
-    background-color: #fff;
+    background-color: var(--light-bg);
 }
 
 /* Animation */

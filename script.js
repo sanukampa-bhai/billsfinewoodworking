@@ -6,55 +6,53 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeNavbarCollapse();
 });
 
-// Form Handling
+// Form Handling — submits to Netlify Forms
 function initializeFormHandling() {
     const contactForm = document.getElementById('contactForm');
-    
+
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
+
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
             const message = document.getElementById('message').value.trim();
-            
-            // Validate required fields
+
             if (!name || !email || !message) {
                 alert('Please fill in all required fields.');
                 return;
             }
-            
-            // Validate email
+
             if (!isValidEmail(email)) {
                 alert('Please enter a valid email address.');
                 return;
             }
-            
-            // Prepare email data
-            const emailData = {
-                to: 'bill@billsfinewoodworking.com',
-                subject: `New Woodworking Inquiry from ${name}`,
-                message: `
-Name: ${name}
-Email: ${email}
-Phone: ${phone || 'Not provided'}
 
-Project Details:
-${message}
-                `
-            };
-            
-            // Log to console (in production, this would send to a backend service)
-            console.log('Form submitted:', emailData);
-            
-            // Show success message
-            showSuccessMessage(contactForm);
-            
-            // Reset form
-            contactForm.reset();
+            const formData = new FormData(contactForm);
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(response => {
+                if (response.ok) {
+                    showSuccessMessage(contactForm);
+                    contactForm.reset();
+                } else {
+                    alert('There was an issue sending your message. Please call us at (619) 778-3182.');
+                }
+            })
+            .catch(() => {
+                alert('There was an issue sending your message. Please call us at (619) 778-3182.');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            });
         });
     }
 }
@@ -71,30 +69,29 @@ function showSuccessMessage(form) {
     alertDiv.className = 'alert alert-success alert-dismissible fade show mt-3';
     alertDiv.setAttribute('role', 'alert');
     alertDiv.innerHTML = `
-        <strong>Thank you!</strong> Your message has been received. We'll get back to you shortly.
+        <strong>Thank you!</strong> Your message has been received. Bill will get back to you within 24 hours.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     `;
-    
+
     form.insertAdjacentElement('beforebegin', alertDiv);
-    
-    // Auto-dismiss after 5 seconds
+
     setTimeout(() => {
         alertDiv.remove();
-    }, 5000);
+    }, 8000);
 }
 
 // Smooth scroll handling for navbar links
 function initializeSmoothScroll() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
-    
+
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             const target = document.querySelector(href);
-            
+
             if (target) {
                 e.preventDefault();
-                const offsetTop = target.offsetTop - 70; // Account for fixed navbar
+                const offsetTop = target.offsetTop - 70;
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -109,7 +106,7 @@ function initializeNavbarCollapse() {
     const navbarToggler = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.querySelector('.navbar-collapse');
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    
+
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             if (navbarCollapse.classList.contains('show')) {
@@ -119,7 +116,7 @@ function initializeNavbarCollapse() {
     });
 }
 
-// Intersection Observer for fade-in animations (optional enhancement)
+// Intersection Observer for fade-in animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -134,7 +131,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe all cards
 document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {

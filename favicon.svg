@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#2c3e50"/>
+  <!-- Hand plane body -->
+  <path d="M12 38 L52 38 L48 32 L44 32 L44 28 L40 28 L40 32 L16 32 Z" fill="#8b4513"/>
+  <!-- Blade -->
+  <rect x="40" y="24" width="4" height="14" rx="1" fill="#d4a76a" transform="rotate(-5 42 31)"/>
+  <!-- Handle knob (front) -->
+  <ellipse cx="16" cy="30" rx="4" ry="5" fill="#8b4513"/>
+  <ellipse cx="16" cy="30" rx="2.5" ry="3.5" fill="#a0522d"/>
+  <!-- Tote handle (rear) -->
+  <path d="M44 28 Q46 20 48 22 Q50 24 48 32" fill="#8b4513" stroke="#6b3410" stroke-width="0.5"/>
+  <!-- Sole highlight -->
+  <rect x="12" y="37" width="40" height="2" rx="1" fill="#6b3410"/>
+  <!-- Shaving curl -->
+  <path d="M36 26 Q32 18 28 22 Q24 26 20 20" fill="none" stroke="#d4a76a" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
